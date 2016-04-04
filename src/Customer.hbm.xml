@@ -12,7 +12,7 @@
         	<column name="name" length="50"></column>
         </property>
         
-        <set name="orders" cascade="save-update" inverse="true">
+        <set name="orders" cascade="delete" inverse="true" lazy="true">
         	<key column="customer_id"></key>
         	<one-to-many class="com.shengsiyuan.hibernate.Order"/>
         </set>

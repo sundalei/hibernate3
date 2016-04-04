@@ -1,6 +1,7 @@
 package com.shengsiyuan.hibernate;
 
-import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,6 +25,7 @@ public class HibernateTest {
 	}
 	
 	public static void main(String[] args) {
+		/*
 		Session session = sessionFactory.openSession();
 		Transaction tx = null;
 		
@@ -52,6 +54,84 @@ public class HibernateTest {
 			customer.getOrders().add(order3);
 			
 			session.save(customer);
+			
+			tx.commit();
+		} catch(Exception ex) {
+			if(null != tx) {
+				tx.rollback();
+			}
+			ex.printStackTrace();
+		} finally {
+			if(null != session) {
+				session.close();
+			}
+		}
+		*/
+		
+		/*
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Customer customer = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			customer = session.get(Customer.class, new Long(1));
+			System.out.println(customer.getName());
+			
+			tx.commit();
+		} catch(Exception ex) {
+			if(null != tx) {
+				tx.rollback();
+			}
+			ex.printStackTrace();
+		} finally {
+			if(null != session) {
+				session.close();
+			}
+		}
+		
+		Set<Order> set = customer.getOrders();
+		for(Iterator<Order> iter = set.iterator(); iter.hasNext();) {
+			Order order = iter.next();
+			System.out.println(order.getOrderNumber());
+		}
+		*/
+		
+		/*
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		Order order = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			order = session.get(Order.class, new Long(1));
+			System.out.println(order.getOrderNumber());
+			
+			tx.commit();
+		} catch(Exception ex) {
+			if(null != tx) {
+				tx.rollback();
+			}
+			ex.printStackTrace();
+		} finally {
+			if(null != session) {
+				session.close();
+			}
+		}
+		
+		System.out.println(order.getCustomer().getName());
+		*/
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			
+			Customer customer = session.get(Customer.class, new Long(1));
+			session.delete(customer);
 			
 			tx.commit();
 		} catch(Exception ex) {
