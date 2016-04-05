@@ -1,8 +1,5 @@
 package com.shengsiyuan.hibernate;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
